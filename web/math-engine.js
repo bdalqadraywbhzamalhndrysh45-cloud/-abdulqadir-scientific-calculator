@@ -201,7 +201,7 @@
     const match=textSource.match(/^limit\(([\s\S]+),\s*x\s*,\s*([^)]+)\)$/i);
     if(match) {
       const tree=parse(match[1]);
-      let a=match[2].trim().replace(/∞/g,'Infinity');
+      let a=match[2].trim().replace(/∞/g,'Infinity').replace(/^\+?inf$/i,'Infinity').replace(/^-inf$/i,'-Infinity');
       const at=/^[+-]?Infinity$/i.test(a)?(a[0]==='-'?-Infinity:Infinity):Number(a);
       return {evaluate:()=>({text:()=>numericalLimit(tree,at)})};
     }
