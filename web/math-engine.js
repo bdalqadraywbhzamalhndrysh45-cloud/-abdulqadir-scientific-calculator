@@ -1,7 +1,7 @@
 /* Local, dependency-free math engine for the PWA. */
 (() => {
   'use strict';
-  const FUNCTIONS = new Set(['sin','cos','tan','asin','acos','atan','sinh','cosh','tanh','sqrt','ln','log','abs','exp']);
+  const FUNCTIONS = new Set(['sin','cos','tan','sec','csc','cot','asin','acos','atan','sinh','cosh','tanh','sqrt','ln','log','abs','exp']);
   const fmt = n => {
     if (!Number.isFinite(n)) return String(n);
     if (Math.abs(n) < 1e-12) return '0';
@@ -100,6 +100,7 @@
         const a=evaluate(n.a,x);
         switch(n.name) {
           case 'sin': return Math.sin(a); case 'cos': return Math.cos(a); case 'tan': return Math.tan(a);
+          case 'sec': return 1/Math.cos(a); case 'csc': return 1/Math.sin(a); case 'cot': return 1/Math.tan(a);
           case 'asin': return Math.asin(a); case 'acos': return Math.acos(a); case 'atan': return Math.atan(a);
           case 'sinh': return Math.sinh(a); case 'cosh': return Math.cosh(a); case 'tanh': return Math.tanh(a);
           case 'sqrt': return Math.sqrt(a); case 'ln': return Math.log(a); case 'log': return Math.log10(a);
@@ -141,6 +142,9 @@
           case 'sin': outer=fn('cos',a); break;
           case 'cos': outer={k:'neg',a:fn('sin',a)}; break;
           case 'tan': outer=bin('/',num(1),bin('^',fn('cos',a),num(2))); break;
+          case 'sec': outer=bin('*',fn('sec',a),fn('tan',a)); break;
+          case 'csc': outer={k:'neg',a:bin('*',fn('csc',a),fn('cot',a))}; break;
+          case 'cot': outer={k:'neg',a:bin('/',num(1),bin('^',fn('sin',a),num(2)))}; break;
           case 'ln': outer=bin('/',num(1),a); break;
           case 'log': outer=bin('/',num(1),bin('*',a,num(Math.LN10))); break;
           case 'exp': outer=fn('exp',a); break;
