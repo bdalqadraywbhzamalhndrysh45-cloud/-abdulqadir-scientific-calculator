@@ -14,6 +14,11 @@ class FunctionEngineTest {
         assertEquals(6.0, FunctionEngine.evaluate(derivative, 3.0), 1e-8)
     }
 
+    @Test fun respectsNegativeExponentPrecedence() {
+        assertEquals(-4.0, FunctionEngine.evaluate("-x^2", 2.0), 1e-9)
+        assertEquals(0.25, FunctionEngine.evaluate("2^-2", 0.0), 1e-9)
+    }
+
     @Test fun differentiatesSineWithChainRule() {
         val derivative = FunctionEngine.derivative("sin(x)")
         assertEquals(kotlin.math.cos(0.4), FunctionEngine.evaluate(derivative, 0.4), 1e-8)
