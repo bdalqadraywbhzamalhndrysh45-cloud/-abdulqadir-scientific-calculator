@@ -34,3 +34,14 @@ test('detects a two-sided limit that does not exist', () => {
 test('rejects unsupported symbols instead of evaluating arbitrary code', () => {
   assert.throws(() => engine.evaluate('x + alert(1)', {x:1}));
 });
+test('supports reciprocal trigonometric functions and their derivatives', () => {
+  assert.ok(Math.abs(engine.evaluate('sec(0)') - 1) < 1e-10);
+  assert.ok(Math.abs(engine.evaluate('csc(pi / 2)') - 1) < 1e-10);
+  assert.ok(Math.abs(engine.evaluate('cot(pi / 4)') - 1) < 1e-10);
+  assert.ok(Math.abs(engine.evaluate(engine.derivative('sec(x)'), {x:0.4}) -
+    (1 / Math.cos(0.4)) * Math.tan(0.4)) < 1e-8);
+  assert.ok(Math.abs(engine.evaluate(engine.derivative('csc(x)'), {x:0.7}) +
+    (1 / Math.sin(0.7)) * (1 / Math.tan(0.7))) < 1e-8);
+  assert.ok(Math.abs(engine.evaluate(engine.derivative('cot(x)'), {x:0.7}) +
+    1 / (Math.sin(0.7) ** 2)) < 1e-8);
+});
