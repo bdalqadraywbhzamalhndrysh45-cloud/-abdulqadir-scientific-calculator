@@ -1,29 +1,20 @@
-# Abdul Qadir Scientific Calculator
+# آلة عبد القادر العلمية
 
-A modern Android scientific calculator built with Kotlin and Jetpack Compose, designed for learning, reliability, and future expansion.
+تطبيق أندرويد أصلي باستخدام Kotlin وJetpack Compose، مع واجهة عربية ومختبر دوال لإدخال تعبير رياضي بدلالة x.
 
-## Project status
+## الميزات
+- حاسبة علمية للعمليات الأساسية والدوال الشائعة.
+- مختبر دوال لقبول تعبيرات يكتبها المستخدم، مثل `(x^3-2x+1)/(x^2+4)`.
+- اشتقاق رمزي لقواعد شائعة: الجمع والطرح والضرب والقسمة والقوى والدوال المثلثية واللوغاريتمية.
+- تقدير عددي للنهايات من اليمين واليسار، بما في ذلك تجربة النهايات عند اللانهاية.
+- رسم بياني عددي وتغيير مجال x.
+- لا يحتاج مختبر الدوال إلى اتصال بالإنترنت بعد تثبيت التطبيق.
 
-Initial project scaffolding is being prepared. The app is planned to include:
+## ملاحظات رياضية
+لا يوجد برنامج يضمن معالجة كل دالة ممكنة. الاشتقاق الرمزي مدعوم لمجموعة من القواعد، والنهايات في هذا الإصدار تقديرات عددية وليست برهانًا رمزيًا. قد تحتاج الدوال غير المدعومة أو النهايات المعقدة إلى تحسينات لاحقة.
 
-- Scientific operations, including trigonometry, powers, roots, and logarithms (`ln` and `log10`)
-- A subtle translucent Arabic watermark: **عبد القادر**
-- Light and dark themes
-- Calculation history
-- Unit tests for the calculation engine
-- A maintainable modular structure for future statistics and advanced math features
+## البناء
+يتطلب JDK 17 وAndroid SDK وGradle 8.11.1:
+`gradle assembleDebug testDebugUnitTest`
 
-## Tech stack
-
-- Kotlin
-- Jetpack Compose / Material 3
-- Gradle Kotlin DSL
-- JUnit for unit tests
-
-## Build
-
-Open the project in a recent Android Studio version and sync Gradle. Use the Android Gradle Plugin and Gradle versions declared by the project.
-
-## License
-
-To be decided by the project owner.
+سير العمل في GitHub Actions يبني APK تجريبيًا ويرفعه كـ artifact بعد نجاح البناء والاختبارات.
