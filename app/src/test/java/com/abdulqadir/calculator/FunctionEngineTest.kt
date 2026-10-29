@@ -6,7 +6,7 @@ import org.junit.Test
 
 class FunctionEngineTest {
     @Test fun acceptsFreeFormPolynomialAndImplicitMultiplication() {
-        assertEquals(14.0, FunctionEngine.evaluate("2x + x^2", 3.0), 1e-9)
+        assertEquals(15.0, FunctionEngine.evaluate("2x + x^2", 3.0), 1e-9)
     }
 
     @Test fun differentiatesPolynomialSymbolically() {
