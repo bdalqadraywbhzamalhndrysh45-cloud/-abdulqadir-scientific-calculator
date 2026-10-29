@@ -100,7 +100,7 @@ private fun CalculatorApp() {
                                         "⌫" -> expression = expression.dropLast(1)
                                         "=" -> try {
                                             val normalized = expression.replace("−", "-").replace("×", "*").replace("÷", "/").replace("π", "pi")
-                                            val v = CalculatorEngine.evaluate(normalized)
+                                            val v = CalculatorEngine.evaluate(normalized, degrees)
                                             result = if (v.isFinite()) String.format(java.util.Locale.US, "%.10g", v) else "غير معرّف"
                                         } catch (e: Exception) { result = e.message ?: "خطأ في التعبير"; error = true }
                                         "±" -> expression = if (expression.startsWith("-")) expression.drop(1) else "-($expression)"
