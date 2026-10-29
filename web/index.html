@@ -1,26 +1,15 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1020"><meta name="description" content="آلة حاسبة علمية من عبد القادر، تعمل دون اتصال بعد أول زيارة.">
-<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/styles.css"><title>آلة عبد القادر العلمية</title>
-</head>
-<body>
-<main class="app">
-<header><div class="brand"><span class="mark">∑</span><div><h1>عبد القادر</h1><p>الآلة الحاسبة العلمية</p></div></div><button id="angle" class="mode" aria-label="تغيير وحدة الزاوية">DEG</button></header>
-<section class="calculator" aria-label="الآلة الحاسبة">
-<div class="screen"><div id="history" class="history" aria-live="polite"></div><div id="display" class="display" aria-live="polite">0</div></div>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b1020"><meta name="description" content="آلة عبد القادر العلمية المتقدمة — حسابات علمية وسجل عمليات وتعمل دون اتصال."><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"><title>آلة عبد القادر العلمية</title></head>
+<body><main class="app"><header><div class="brand"><span class="mark">∑</span><div><h1>عبد القادر</h1><p>الآلة الحاسبة العلمية <span class="version">PRO</span></p></div></div><div class="head-actions"><button id="theme" class="icon-btn" aria-label="تغيير المظهر" title="تغيير المظهر">☼</button><button id="angle" class="mode" aria-label="تغيير وحدة الزاوية">DEG</button></div></header>
+<section class="calculator" aria-label="الآلة الحاسبة"><div class="screen"><div class="screen-label">العملية الحالية</div><div id="history" class="history" aria-live="polite"></div><div id="display" class="display" aria-live="polite">0</div><div class="screen-bottom"><span id="status">جاهز للحساب</span><button id="copy" class="copy-btn" title="نسخ النتيجة">نسخ النتيجة</button></div></div>
 <div class="keys">
 <button class="fn" data-action="clear">AC</button><button class="fn" data-action="delete">DEL</button><button class="fn" data-value="(">(</button><button class="fn" data-value=")">)</button><button class="op" data-value="÷">÷</button>
 <button class="fn" data-value="sin(">sin</button><button class="fn" data-value="cos(">cos</button><button class="fn" data-value="tan(">tan</button><button class="fn" data-value="sqrt(">√</button><button class="op" data-value="×">×</button>
-<button class="fn" data-value="ln(">ln</button><button class="fn" data-value="log(">log</button><button class="fn" data-value="π">π</button><button class="fn" data-value="^">xʸ</button><button class="op" data-value="−">−</button>
+<button class="fn" data-value="ln(">ln</button><button class="fn" data-value="log(">log</button><button class="fn" data-value="π">π</button><button class="fn" data-action="square">x²</button><button class="op" data-value="−">−</button>
 <button data-value="7">7</button><button data-value="8">8</button><button data-value="9">9</button><button class="fn" data-value="%">%</button><button class="op" data-value="+">+</button>
-<button data-value="4">4</button><button data-value="5">5</button><button data-value="6">6</button><button class="fn" data-value="!">x!</button><button class="op" data-value="÷">÷</button>
-<button data-value="1">1</button><button data-value="2">2</button><button data-value="3">3</button><button class="fn" data-value="e">e</button><button class="op" data-value="×">×</button>
+<button data-value="4">4</button><button data-value="5">5</button><button data-value="6">6</button><button class="fn" data-action="reciprocal">1/x</button><button class="op" data-value="÷">÷</button>
+<button data-value="1">1</button><button data-value="2">2</button><button data-value="3">3</button><button class="fn" data-action="ans">Ans</button><button class="op" data-value="×">×</button>
 <button class="wide" data-value="0">0</button><button data-value=".">.</button><button class="equal" data-action="equals">=</button>
-</div>
-</section>
-<footer><span>صُممت بعناية</span><span class="watermark">عبد القادر</span><span>تعمل دون إنترنت</span></footer>
-</main><script src="/app.js" defer></script>
-</body></html>
+</div></section>
+<section class="history-panel"><div class="history-heading"><div><h2>سجل العمليات</h2><p>آخر حساباتك محفوظة على جهازك</p></div><button id="clear-history" class="clear-history">مسح السجل</button></div><div id="history-list" class="history-list"><div class="empty-history">ستظهر نتائجك هنا بعد أول عملية حسابية.</div></div></section>
+<footer><span>صُممت بعناية</span><span class="watermark">عبد القادر</span><span>تعمل دون إنترنت</span></footer></main><div id="toast" class="toast" role="status" aria-live="polite"></div><script src="/app.js" defer></script></body></html>
