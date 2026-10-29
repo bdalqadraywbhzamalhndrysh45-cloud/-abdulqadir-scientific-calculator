@@ -22,7 +22,7 @@ try{ans=read('aq-ans',0);if(localStorage.getItem('aq-theme')==='light'){document
 /* مختبر الدوال: الاشتقاق والنهايات والرسم */
 const fnInput=document.querySelector('#function-input'),resultExpression=document.querySelector('#result-expression'),resultNote=document.querySelector('#result-note'),limitOptions=document.querySelector('#limit-options'),graphArea=document.querySelector('#graph-area'),canvas=document.querySelector('#function-graph');
 let lastGraphExpression='';
-function getFunction(){const raw=fnInput.value.trim();if(!raw)throw Error('اكتب الدالة أولًا');if(raw.length>220)throw Error('الدالة طويلة جدًا');return raw.replace(/π/g,'pi').replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/\bln\s*\(/g,'log(')}
+function getFunction(){const raw=fnInput.value.trim();if(!raw)throw Error('اكتب الدالة أولًا');if(raw.length>220)throw Error('الدالة طويلة جدًا');return raw.replace(/π/g,'pi').replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-')}
 function showResult(title,value,note){resultExpression.textContent=title+' = '+value;resultNote.textContent=note||''}
 function nerdamerReady(){if(typeof window.nerdamer!=='function')throw Error('محرك الاشتقاق غير متاح. تحقق من اتصال الإنترنت ثم أعد تحميل الصفحة.')}
 function mathReady(){if(!window.math||typeof math.evaluate!=='function')throw Error('محرك الرسم غير متاح. تحقق من اتصال الإنترنت ثم أعد تحميل الصفحة.')}
