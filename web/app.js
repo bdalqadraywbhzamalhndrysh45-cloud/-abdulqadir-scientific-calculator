@@ -24,8 +24,8 @@ const fnInput=document.querySelector('#function-input'),resultExpression=documen
 let lastGraphExpression='';
 function getFunction(){const raw=fnInput.value.trim();if(!raw)throw Error('اكتب الدالة أولًا');if(raw.length>220)throw Error('الدالة طويلة جدًا');return raw.replace(/π/g,'pi').replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-')}
 function showResult(title,value,note){resultExpression.textContent=title+' = '+value;resultNote.textContent=note||''}
-function nerdamerReady(){if(typeof window.nerdamer!=='function')throw Error('محرك الاشتقاق غير متاح. تحقق من اتصال الإنترنت ثم أعد تحميل الصفحة.')}
-function mathReady(){if(!window.math||typeof math.evaluate!=='function')throw Error('محرك الرسم غير متاح. تحقق من اتصال الإنترنت ثم أعد تحميل الصفحة.')}
+function nerdamerReady(){if(typeof window.nerdamer!=='function')throw Error('محرك الدوال المحلي غير متاح. أعد تحميل التطبيق.')}
+function mathReady(){if(!window.math||typeof math.evaluate!=='function')throw Error('محرك الدوال المحلي غير متاح. أعد تحميل التطبيق.')}
 document.querySelectorAll('[data-example]').forEach(b=>b.addEventListener('click',()=>{fnInput.value=b.dataset.example;fnInput.focus()}));
 document.querySelector('#differentiate').addEventListener('click',()=>{try{const f=getFunction();nerdamerReady();const d=window.nerdamer.diff('('+f+')','x').toString();showResult("f′(x)",d,'هذه هي المشتقة الرمزية بالنسبة إلى x.');graphArea.hidden=true}catch(e){showResult('تعذر الاشتقاق',e.message,'جرّب كتابة الدالة بصيغة واضحة مثل x^2 أو sin(x).')}});
 document.querySelector('#limit-btn').addEventListener('click',()=>{limitOptions.hidden=!limitOptions.hidden;if(!limitOptions.hidden)document.querySelector('#limit-point').focus()});
