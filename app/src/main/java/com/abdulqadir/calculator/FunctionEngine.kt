@@ -54,11 +54,11 @@ object FunctionEngine {
             while (true) n = when { eat('+') -> N.Bin('+', n, term()); eat('-') -> N.Bin('-', n, term()); else -> return n }
         }
         private fun term(): N {
-            var n = power()
+            var n = unary()
             while (true) n = when {
-                eat('*') -> N.Bin('*', n, power())
-                eat('/') -> N.Bin('/', n, power())
-                startsPrimary() -> N.Bin('*', n, power())
+                eat('*') -> N.Bin('*', n, unary())
+                eat('/') -> N.Bin('/', n, unary())
+                startsPrimary() -> N.Bin('*', n, unary())
                 else -> return n
             }
         }
@@ -66,8 +66,11 @@ object FunctionEngine {
             spaces()
             return i < s.length && (s[i].isLetter() || s[i].isDigit() || s[i] == '.' || s[i] == '(')
         }
-        private fun power(): N { var n = unary(); if (eat('^')) n = N.Bin('^', n, power()); return n }
-        private fun unary(): N = when { eat('+') -> unary(); eat('-') -> N.Unary('-', unary()); else -> primary() }
+        private fun power(): N {
+            val base = primary()
+            return if (eat('^')) N.Bin('^', base, unary()) else base
+        }
+        private fun unary(): N = when { eat('+') -> unary(); eat('-') -> N.Unary('-', unary()); else -> power() }
         private fun primary(): N {
             spaces()
             require(i < s.length) { "تعبير غير مكتمل" }
