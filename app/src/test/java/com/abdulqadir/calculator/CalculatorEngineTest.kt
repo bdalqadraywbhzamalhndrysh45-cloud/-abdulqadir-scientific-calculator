@@ -15,6 +15,11 @@ class CalculatorEngineTest {
         assertEquals(2.0, CalculatorEngine.evaluate("log(100)"), 1e-9)
     }
     @Test fun evaluatesTrigonometryInRadians() {
+        assertEquals(1.0, CalculatorEngine.evaluate("sin(90)", degrees = true), 1e-9)
+        assertEquals(90.0, CalculatorEngine.evaluate("asin(1)", degrees = true), 1e-9)
+    }
+
+    @Test fun evaluatesTrigonometryInRadiansRegression() {
         assertEquals(1.0, CalculatorEngine.evaluate("sin(1.5707963267948966)"), 1e-9)
     }
 }
