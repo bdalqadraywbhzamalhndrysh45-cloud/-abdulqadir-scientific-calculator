@@ -2,10 +2,10 @@ package com.abdulqadir.calculator
 
 import kotlin.math.*
 
-/** A small recursive-descent expression evaluator. Trigonometric functions use radians. */
+/** A small recursive-descent expression evaluator with selectable angle units. */
 object CalculatorEngine {
-    fun evaluate(expression: String): Double {
-        val parser = Parser(expression.replace("×", "*").replace("÷", "/").replace("π", "pi"))
+    fun evaluate(expression: String, degrees: Boolean = false): Double {
+        val parser = Parser(expression.replace("×", "*").replace("÷", "/").replace("π", "pi"), degrees)
         val result = parser.parseExpression()
         parser.skipSpaces()
         require(parser.atEnd()) { "Unexpected input" }
@@ -13,7 +13,7 @@ object CalculatorEngine {
         return result
     }
 
-    private class Parser(private val source: String) {
+    private class Parser(private val source: String, private val degrees: Boolean) {
         private var index = 0
         fun atEnd() = index >= source.length
         fun skipSpaces() { while (!atEnd() && source[index].isWhitespace()) index++ }
@@ -68,8 +68,12 @@ object CalculatorEngine {
                 val x = parseExpression()
                 require(consume(')')) { "Missing closing parenthesis" }
                 return when (name) {
-                    "sin" -> sin(x); "cos" -> cos(x); "tan" -> tan(x)
-                    "asin" -> asin(x); "acos" -> acos(x); "atan" -> atan(x)
+                    "sin" -> sin(if (degrees) Math.toRadians(x) else x)
+                    "cos" -> cos(if (degrees) Math.toRadians(x) else x)
+                    "tan" -> tan(if (degrees) Math.toRadians(x) else x)
+                    "asin" -> if (degrees) Math.toDegrees(asin(x)) else asin(x)
+                    "acos" -> if (degrees) Math.toDegrees(acos(x)) else acos(x)
+                    "atan" -> if (degrees) Math.toDegrees(atan(x)) else atan(x)
                     "sqrt" -> sqrt(x); "ln" -> ln(x); "log" -> log10(x)
                     "abs" -> abs(x); "exp" -> exp(x)
                     else -> error("Unknown function: $name")
